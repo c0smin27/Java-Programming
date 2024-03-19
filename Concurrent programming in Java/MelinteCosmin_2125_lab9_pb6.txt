@@ -1,0 +1,94 @@
+////////////////////////// ScriereFisierThread.java //////////////////////////
+package project;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class ScriereFisierThread extends Thread {
+    private String NumeFisier;
+    private Object close;
+
+    public ScriereFisierThread(String NumeFisier, Object close) {
+        this.NumeFisier = NumeFisier;
+        this.close = close;
+    }
+
+    public void run() {
+        synchronized (close) {
+            try {
+                File fisier = new File(NumeFisier);
+                if (!fisier.exists()) {
+                    fisier.createNewFile();
+                }
+
+                FileWriter fin = new FileWriter(fisier.getAbsoluteFile(), true);
+                BufferedWriter fout = new BufferedWriter(fin);
+
+                fout.write("Hello Java!\n");
+                fout.flush();
+                fout.close(); 
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+////////////////////////// CitireFisierThread.java //////////////////////////
+package project;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class CitireFisierThread extends Thread {
+    private String NumeFisier;
+    private Object close;
+
+    public CitireFisierThread(String NumeFisier, Object close) {
+        this.NumeFisier = NumeFisier;
+        this.close = close;
+    }
+
+    public void run() {
+        synchronized (close) {
+            try {
+                File fisier = new File(NumeFisier);
+                if (!fisier.exists()) {
+                    fisier.createNewFile();
+                }
+
+                FileReader fin = new FileReader(fisier.getAbsoluteFile());
+                BufferedReader fout = new BufferedReader(fin);
+
+                String line;
+                while ((line = fout.readLine()) != null) {
+                    System.out.println(line);
+                }
+                fout.close();
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+public class Main {
+    public static void main(String[] args) {
+        Object close = new Object();
+
+        ScriereFisierThread scriereThread = new ScriereFisierThread("test.txt", close);
+        CitireFisierThread citireThread = new CitireFisierThread("test.txt", close);
+
+        scriereThread.start();
+        citireThread.start();
+    }
+}

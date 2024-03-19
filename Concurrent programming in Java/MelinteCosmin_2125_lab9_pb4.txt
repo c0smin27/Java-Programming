@@ -1,0 +1,61 @@
+package project;
+
+class Variabila {
+    private int nr = 10;
+    public synchronized void increment() {
+        nr++;
+    }
+    public synchronized void decrement() {
+        nr--;
+    }
+    public synchronized int getNr() {
+        return nr;
+    }
+}
+
+class Incrementare extends Thread {
+    private Variabila x;
+    public Incrementare(Variabila x) {
+        this.x = x;
+    }
+    public void run() {
+        for (int i = 0; i < 400; i++) {
+            x.increment();
+        }
+    }
+}
+
+class Decrementare extends Thread {
+    private Variabila x;
+    public Decrementare(Variabila x) {
+        this.x = x;
+    }
+    public void run() {
+        for (int i = 0; i < 200; i++) {
+            x.decrement();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Variabila var = new Variabila();
+        Incrementare incrementT1 = new Incrementare(var);
+        Incrementare incrementT2 = new Incrementare(var);
+        Decrementare decrementT1 = new Decrementare(var);
+
+        incrementT1.start();
+        incrementT2.start();
+        decrementT1.start();
+
+        try {
+            incrementT1.join();
+            incrementT2.join();
+            decrementT1.join();
+        } catch (InterruptedException e) {
+            System.out.println("Main Thread error!");
+        }
+
+        System.out.println("Valoarea variabilei dupa\nincrementare si decrementare:\n" + var.getNr());
+    }
+}

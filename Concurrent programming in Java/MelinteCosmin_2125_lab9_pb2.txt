@@ -1,0 +1,30 @@
+package project;
+
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+            // obiect random
+        Random random_obj = new Random();
+
+        // fir executie pt numere aleatoare
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 31; i++) {
+                int numar = random_obj.nextInt(31);
+                System.out.println("Cerc_" + (i+1) + " de raza r=" + numar);
+
+                // fir executie pt arie %3
+                if (numar % 3 == 0) {
+                    Thread t2 = new Thread(() -> {
+                            double pi = Math.PI;
+                        double raza = numar;
+                        double arie = raza * raza * pi;
+                        System.out.println("Aria cercului de raza r=" + raza + " este " + arie);
+                    });
+                    t2.start();
+                }
+            }
+        });
+        t1.start();
+    }
+}
