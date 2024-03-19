@@ -1,0 +1,51 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Introdu o valoare intreaga: ");
+		if (scanner.hasNextInt()) {
+			int nr = scanner.nextInt();
+			if (nr >= 1 && nr <= 12) { 
+				if(nr==1) {System.out.print("Ianuarie");}
+				if(nr==2) {System.out.print("Februarie");}
+				if(nr==3) {System.out.print("Martie");}
+				if(nr==4) {System.out.print("Aprilie");}
+				if(nr==5) {System.out.print("Mai");}
+				if(nr==6) {System.out.print("Iunie");}
+				if(nr==7) {System.out.print("Iulie");}
+				if(nr==8) {System.out.print("August");}
+				if(nr==9) {System.out.print("Septembrie");}
+				if(nr==10) {System.out.print("Octombrie");}
+				if(nr==11) {System.out.print("Noimebrie");}
+				if(nr==12) {System.out.print("Decembrie");}
+			}
+			else if(nr > 12) {
+				System.out.print("Ai introdus: " + nr);
+			}
+			else {
+				System.out.print("(!) Valoarea trebuie sa fie de tip int pozitiv");
+			}
+		}
+		else {
+			String cuvant = scanner.next();
+			if (cuvant.equals("Ianuarie")) {System.out.print("1");}
+			else if (cuvant.equals("Februarie")) {System.out.print("2");}
+			else if (cuvant.equals("Martie")) {System.out.print("3");}
+			else if (cuvant.equals("Aprilie")) {System.out.print("4");}
+			else if (cuvant.equals("Mai")) {System.out.print("5");}
+			else if (cuvant.equals("Iunie")) {System.out.print("6");}
+			else if (cuvant.equals("Iulie")) {System.out.print("7");}
+			else if (cuvant.equals("August")) {System.out.print("8");}
+			else if (cuvant.equals("Septembrie")) {System.out.print("9");}
+			else if (cuvant.equals("Octombrie")) {System.out.print("10");}
+			else if (cuvant.equals("Noimebrie")) {System.out.print("11");}
+			else if (cuvant.equals("Decembrie")) {System.out.print("12");}
+			else {System.out.print("Ai introdus: " + cuvant);}
+		}
+	}
+
+}
