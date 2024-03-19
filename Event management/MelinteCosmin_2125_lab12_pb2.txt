@@ -1,0 +1,101 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.setLocationRelativeTo(null);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        
+        MyCanvas canvas = new MyCanvas();
+        canvas.setPreferredSize(new Dimension(200, 200));
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        panel.add(canvas, gbc);
+        
+        JLabel labelR = new JLabel("R");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelR, gbc);
+        JSlider sliderR = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(sliderR, gbc);
+        
+        JLabel labelG = new JLabel("G");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelG, gbc);
+        JSlider sliderG = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        panel.add(sliderG, gbc);
+        
+        JLabel labelB = new JLabel("B");
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelB, gbc);
+        JSlider sliderB = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        panel.add(sliderB, gbc);
+
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
+        
+        sliderR.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                int r = sliderR.getValue();
+                int g = sliderG.getValue();
+                int b = sliderB.getValue();
+                canvas.setCuloarePatrat(new Color(r, g, b));
+                canvas.repaint();
+            }
+        });
+        
+        sliderG.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                int r = sliderR.getValue();
+                int g = sliderG.getValue();
+                int b = sliderB.getValue();
+                canvas.setCuloarePatrat(new Color(r, g, b));
+                canvas.repaint();
+            }
+        });
+        
+        sliderB.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                int r = sliderR.getValue();
+                int g = sliderG.getValue();
+                int b = sliderB.getValue();
+                canvas.setCuloarePatrat(new Color(r, g, b));
+                canvas.repaint();
+            }
+        });
+    }
+}
+
+class MyCanvas extends Canvas {
+    private Color culoarePatrat = Color.BLACK;
+    
+    public void setCuloarePatrat(Color color) {
+    	culoarePatrat = color;
+    }
+    
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setColor(culoarePatrat);
+        g.fillRect(40, 50, 100, 100);
+    }
+}

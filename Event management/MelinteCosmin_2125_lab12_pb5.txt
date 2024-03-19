@@ -1,0 +1,117 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Formular Inregistrare");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        JLabel labelNume = new JLabel("Nume");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(labelNume, gbc);
+        JTextField textNume = new JTextField(15);
+        gbc.gridx = 1;
+        panel.add(textNume, gbc);
+        // KeyListener pt textNume -> litere
+        textNume.addKeyListener(new LetterKeyListener());
+
+        JLabel labelGrupa = new JLabel("Grupa");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelGrupa, gbc);
+        JTextField textGrupa = new JTextField(15);
+        gbc.gridx = 1;
+        panel.add(textGrupa, gbc);
+        // KeyListener pt textGrupa -> cifre
+        textGrupa.addKeyListener(new NumericKeyListener());
+
+        JLabel labelCurs = new JLabel("Cursuri");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelCurs, gbc);
+        String[] Cursuri = {"Inginerie software", "uUnde", "CIA", "CAD", "SCID", "ASC", "MET"};
+        JComboBox<String> comboBoxCurs = new JComboBox<>(Cursuri);
+        gbc.gridx = 1;
+        panel.add(comboBoxCurs, gbc);
+
+        JButton button = new JButton("Inregistrare");
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(button, gbc);
+
+        // ActionListener buton
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nume = textNume.getText();
+                String grupa = textGrupa.getText();
+                String curs = (String) comboBoxCurs.getSelectedItem();
+                String content = "Nume: " + nume + " || Grupa: " + grupa + " || Curs: " + curs;
+
+                try {
+                    FileWriter writer = new FileWriter("inregistrari.txt", true); // deschidere pt adaugare
+                    writer.write(content + System.lineSeparator()); // add inregistrare pe linie noua
+                    writer.close();
+                    JOptionPane.showMessageDialog(frame, "Inregistrarea a fost salvata!");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(frame, "Eroare la inregistrare!");
+                }
+            }
+        });
+
+        frame.add(panel);
+
+        frame.pack();
+        frame.setSize(400, 300);
+        frame.setVisible(true);
+    }
+}
+
+class LetterKeyListener implements KeyListener {
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE) {
+            e.consume(); // trebuie sa fie litera
+        }
+    }
+    // metode obligatorii, dar nu le folosesc
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+}
+
+class NumericKeyListener implements KeyListener {
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if (!Character.isDigit(c)) {
+            e.consume(); // trebuie sa fie cifra
+        }
+    }
+    // metode obligatorii, dar nu le folosesc
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+}
