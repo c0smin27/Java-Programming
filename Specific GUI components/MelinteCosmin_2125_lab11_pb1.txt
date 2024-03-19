@@ -1,0 +1,79 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+	public static void main(String[] args) {
+		// frame window
+		JFrame frame = new JFrame("Calculator");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// text field
+		JTextField textField = new JTextField();
+		textField.setHorizontalAlignment(JTextField.RIGHT);
+		Dimension textFieldSize = textField.getPreferredSize();
+		textFieldSize.height = 50;
+		textField.setPreferredSize(textFieldSize);
+		
+		// buttons
+		JButton jb1 = new JButton("C");		
+		JButton jb2 = new JButton("()");
+		JButton jb3 = new JButton("%");		
+		JButton jb4 = new JButton("/");
+		JButton jb5 = new JButton("7");		
+		JButton jb6 = new JButton("8");		
+		JButton jb7 = new JButton("9");
+		JButton jb8 = new JButton("x");		
+		JButton jb9 = new JButton("4");
+		JButton jb10 = new JButton("5");	
+		JButton jb11 = new JButton("6");		
+		JButton jb12 = new JButton("-");
+		JButton jb13 = new JButton("1");		
+		JButton jb14 = new JButton("2");
+		JButton jb15 = new JButton("3");	
+		JButton jb16 = new JButton("+");
+		JButton jb17 = new JButton("+/-");		
+		JButton jb18 = new JButton("0");
+		JButton jb19 = new JButton(",");	
+		JButton jb20 = new JButton("=");	
+		
+		// panel to hold the components
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		
+		// set text field as content
+		frame.getContentPane().add(textField, BorderLayout.NORTH);
+		
+		// panel to hold the buttons
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(5, 4));
+		buttonPanel.add(jb1);
+		buttonPanel.add(jb2);
+		buttonPanel.add(jb3);
+		buttonPanel.add(jb4);
+		buttonPanel.add(jb5);
+		buttonPanel.add(jb6);
+		buttonPanel.add(jb7);
+		buttonPanel.add(jb8);
+		buttonPanel.add(jb9);
+		buttonPanel.add(jb10);
+		buttonPanel.add(jb11);
+		buttonPanel.add(jb12);
+		buttonPanel.add(jb13);
+		buttonPanel.add(jb14);
+		buttonPanel.add(jb15);
+		buttonPanel.add(jb16);
+		buttonPanel.add(jb17);
+		buttonPanel.add(jb18);
+		buttonPanel.add(jb19);
+		buttonPanel.add(jb20);
+		
+		panel.add(buttonPanel, BorderLayout.CENTER);
+		
+		// show the window
+		frame.add(panel);
+		frame.setSize(260, 350);
+		frame.setVisible(true);
+	}
+}
