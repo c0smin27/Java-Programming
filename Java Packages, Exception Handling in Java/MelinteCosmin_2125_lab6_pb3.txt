@@ -1,0 +1,81 @@
+////////////////////////// Int1.java //////////////////////////
+package project;
+
+public interface Int1 {
+    int x = 0;
+    int y = 0;
+    int sum(int x, int y);
+}
+
+////////////////////////// Class1.java //////////////////////////
+package project;
+
+public class Class1 {
+    protected double x;
+    protected double y;
+
+    public Class1(double X, double Y) {
+        this.x = X;
+        this.y = Y;
+    }
+
+    public double getX() {
+        return x;
+    }
+    public void setX(double X) {
+        this.x = X;
+    }
+
+    public double getY() {
+        return y;
+    }
+    public void setY(double Y) {
+        this.y = Y;
+    }
+}
+
+////////////////////////// Int2.java //////////////////////////
+package project;
+
+public interface Int2 {
+    double x = 0;
+    double y = 0;
+    double product(double x, double y);
+}
+
+////////////////////////// Class2.java //////////////////////////
+package project;
+
+import java.util.Scanner;
+
+public class Class2 extends Class1 implements Int1, Int2 {
+
+    public Class2(double X, double Y) {
+        super(X, Y);
+    }
+
+    @Override
+    public int sum(int x, int y) {
+        return x + y;
+    }
+
+    @Override
+    public double product(double x, double y) {
+        return x * y;
+    }
+
+    public static void main(String[] args) {
+    	Scanner scan = new Scanner(System.in);
+		System.out.print("x = ");
+		int x = scan.nextInt();
+		System.out.print("y = ");
+		int y = scan.nextInt();
+		
+        Class2 obj = new Class2(x, y);
+        int sum = obj.sum(x, y);
+        double product = obj.product(x, y);
+        
+        System.out.println(x + " + " + y + " = " + sum);
+        System.out.println(x + " * " + y + " = " + product);
+    }
+}

@@ -1,0 +1,71 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int x1, y1, x2, y2, x3, y3;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("P1(x1,y1): ");
+        x1 = scanner.nextInt();
+        y1 = scanner.nextInt();
+
+        System.out.print("P2(x2,y2): ");
+        x2 = scanner.nextInt();
+        y2 = scanner.nextInt();
+
+        System.out.print("P1(x3,y3): ");
+        x3 = scanner.nextInt();
+        y3 = scanner.nextInt();
+
+        // verificare daca punctele sunt sau nu coliniare
+        if ((y2 - y1) * (x3 - x2) == (y3 - y2) * (x2 - x1)) {
+            try {
+                throw new TriunghiImposibilException("Cele trei puncte sunt coliniare");
+            } catch (TriunghiImposibilException e) {
+            	// transformam exceptia
+                throw new RuntimeException(e);
+            }
+        } 
+        
+        // laturile triunghiului, formula distantei dintre 2 puncte
+        double a = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+        double b = Math.sqrt((x3-x2)*(x3-x2) + (y3-y2)*(y3-y2));
+        double c = Math.sqrt((x1-x3)*(x1-x3) + (y1-y3)*(y1-y3));
+
+        if (a*a > b*b + c*c || b*b > a*a + c*c || c*c > a*a + b*b) {
+            System.out.println("Triunghiul format de cele trei puncte este obtuzunghic");
+        } else if (a*a == b*b + c*c) {
+            try {
+                throw new TriunghiDreptunghicException("Triunghiul format de cele trei puncte este dreptunghic");
+            } catch (TriunghiDreptunghicException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            try {
+                throw new TriunghiAscutitunghicException("Triunghiul format de cele trei puncte este ascutitunghic");
+            } catch (TriunghiAscutitunghicException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+}
+
+class TriunghiDreptunghicException extends Exception {
+    public TriunghiDreptunghicException(String message) {
+        super(message);
+    }
+}
+
+class TriunghiAscutitunghicException extends Exception {
+    public TriunghiAscutitunghicException(String message) {
+        super(message);
+    }
+}
+
+class TriunghiImposibilException extends Exception {
+	public TriunghiImposibilException(String message) {
+		super(message);
+	}
+}

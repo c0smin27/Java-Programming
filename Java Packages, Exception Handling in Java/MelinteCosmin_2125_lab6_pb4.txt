@@ -1,0 +1,45 @@
+package project;
+
+class SuperExceptie extends Exception {
+    public SuperExceptie(String mesaj) {
+        super(mesaj);
+        System.out.print("\n\nMesaj din SuperExceptie: " + mesaj);
+    } // constructor clasa afis mesaj tipul exceptiei
+}
+
+class ExceptieMaiMica extends SuperExceptie {
+    public ExceptieMaiMica(String mesaj) {
+        super(mesaj);
+        System.out.print("\nMesaj din ExceptieMaiMica: " + mesaj);
+    } // constructor clasa afis mesaj tipil exceptiei
+}
+
+class Main {
+    public static void a() throws ExceptieMaiMica {
+        throw new ExceptieMaiMica("Mesaj pentru ExceptieMaiMica");
+    } // semnalare exceptie
+
+    public static void b() throws SuperExceptie {
+        throw new SuperExceptie("Mesaj pentru SuperExceptie");
+    } // semnalare exceptie
+    
+    public static void main(String[] args) {
+    	try {
+    		a();
+    	}
+//// nu se pot prinde doua exceptii
+//    	catch (SuperExceptie e) {
+//    		System.out.print("\nExceptie din SuperExceptie: " + e.getMessage());
+//    	}
+    	catch (ExceptieMaiMica e) {
+    		System.out.print("\nExceptie din ExceptieMaiMica: " + e.getMessage());
+    	}
+    	
+    	try {
+    		b();
+    	}
+    	catch (SuperExceptie e) {
+    		System.out.print("\nExceptie din SuperExcpetie: " + e.getMessage());
+    	}
+    }
+}

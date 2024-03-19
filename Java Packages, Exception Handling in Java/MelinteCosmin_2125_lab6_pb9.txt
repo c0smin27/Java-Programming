@@ -1,0 +1,116 @@
+////////////////////////// Pozitie.java //////////////////////////
+package project;
+
+public class Pozitie {
+	
+    private String numePunct;
+    private int X;
+    private int Y;
+    private int Z;
+
+    public Pozitie(String numePunct, int x, int y, int z) {
+        this.numePunct = numePunct;
+        this.X = x;
+        this.Y = y;
+        this.Z = z;
+    }
+
+    public String getNumePunct() {
+        return numePunct;
+    }
+    public void setNumePunct(String numePunct) {
+        this.numePunct = numePunct;
+    }
+
+    public int getX() {
+        return X;
+    }
+    public void setX(int x) {
+        this.X = x;
+    }
+    
+    public int getY() {
+        return Y;
+    }
+    public void setY(int y) {
+        this.Y = y;
+    }
+    
+    public int getZ() {
+        return Z;
+    }
+    public void setZ(int z) {
+        this.Z = z;
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+	    Scanner scanner = new Scanner(System.in);
+	    int nrObiecte;
+	    
+	    try {
+	        System.out.print("Introdu nr de obiecte, maxim 3: ");
+	        nrObiecte = scanner.nextInt();
+	        if (nrObiecte < 1 || nrObiecte > 3) {
+	            throw new ArrayIndexOutOfBoundsException();
+	        } // exceptie pentru nr introdus gresit
+	    } catch (ArrayIndexOutOfBoundsException e) {
+	        System.out.println("Pot exista numai 1, 2 sau 3 obiecte");
+	        return;
+	    }
+	    
+	    scanner.nextLine();
+	    Pozitie[] pozitii = new Pozitie[nrObiecte]; // initializare tablou
+
+	    for (int i = 0; i < nrObiecte; i++) {
+	        String numePunct;
+	        int x, y, z;
+
+	        System.out.print("Nume punct: ");
+	        numePunct = scanner.nextLine();
+
+	        System.out.print("X: ");
+	        x = scanner.nextInt();
+
+	        System.out.print("Y: ");
+	        y = scanner.nextInt();
+
+	        System.out.print("Z: ");
+	        z = scanner.nextInt();
+	        
+	        scanner.nextLine();
+	        pozitii[i] = new Pozitie(numePunct, x, y, z); // initializare obiecte cu valorile introduse
+	    }
+	    
+	    Pozitie punctFix = new Pozitie("PunctFix", 3, 4, 5); // declarare punct fix
+        double distantaFix = 3; // declarare distanta reper
+        
+        for (int i = 0; i < nrObiecte; i++) {
+            Pozitie pozitieCurenta = pozitii[i];
+            // distanta euclidiana tridimensionala d(P,Q)=sqrt((x2-x1)^2+(y2-y1)^2+(z2-z1)^2)
+            double distanta = Math.sqrt(Math.pow(pozitieCurenta.getX() - punctFix.getX(), 2) + Math.pow(pozitieCurenta.getY() - punctFix.getY(), 2) + Math.pow(pozitieCurenta.getZ() - punctFix.getZ(), 2));
+
+            if (distanta <= distantaFix) {
+            	try {
+            		throw new PunctPreaAproape("Punctul '" + pozitieCurenta.getNumePunct() + "' este prea aproape de punctul fix");
+            	} catch (PunctPreaAproape e) {
+            		System.out.println(e.getMessage());
+            	}
+            } else {
+                System.out.println("Punctul '" + pozitieCurenta.getNumePunct() + "' se afla la o distanta de " + distanta + " fata de punctul fix");
+            }
+        }
+	}
+}
+
+class PunctPreaAproape extends Exception {
+	public PunctPreaAproape(String message) {
+		super(message);
+	}
+}
