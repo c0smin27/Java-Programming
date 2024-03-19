@@ -1,0 +1,43 @@
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+  public static void main(String[] args) throws IOException, ClassNotFoundException {
+    Scanner scan = new Scanner(System.in);
+
+    System.out.print("Introdu nr de elemente al sirului serializat: ");
+    int nr = scan.nextInt();
+
+    int[] sir = new int[nr];
+    System.out.print("Introdu cele " + nr +" elementele: ");
+    for (int i = 0; i < nr; i++) {
+      sir[i] = scan.nextInt();
+    }
+    
+    // sortare sir
+    Arrays.sort(sir); 
+
+    // serializare cu ObjectOutputStream si scriere cu FileOutputStream
+    // sirul int -> flux de octeti
+    FileOutputStream fout = new FileOutputStream("elementeSerializate.ser");
+    ObjectOutputStream fin = new ObjectOutputStream(fout);
+    fin.writeObject(sir);
+    fin.close();
+    fout.close();
+
+    // deserializare ObjectInputStream si citire cu FileInputStream
+    // fulx de octeti -> int
+    FileInputStream in = new FileInputStream("elementeSerializate.ser");
+    ObjectInputStream out = new ObjectInputStream(in);
+    int[] sirDeserializat = (int[]) out.readObject();
+    out.close();
+    in.close();
+
+    // afis
+    System.out.println("\nSirul serializat este: " + sir);
+    System.out.println("Sirul deserializat este: " + Arrays.toString(sirDeserializat));
+  }
+}

@@ -1,0 +1,44 @@
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // citire cheie privata din .bin
+            FileInputStream fisier = new FileInputStream("cheiePrivata.bin");
+            byte[] cheiePrivata = fisier.readAllBytes();
+            fisier.close();
+
+            // citire cheie publica
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Introdu cheia publica: ");
+            byte[] cheiePublica = scanner.nextLine().getBytes();
+            scanner.close();
+
+            // creare vector 256 bytes
+            byte[] identificator = new byte[256];
+            // iterare fiecare pozitie si xor intre bitii cheilor
+            for (int i = 0; i < 256; i++) {
+            	// cei doi biti sunt diferiti -> 1 altfel 0
+            	identificator[i] = (byte) (cheiePrivata[i] ^ cheiePublica[i]);
+            }
+
+            // scrie rezulatatul in .bin
+            FileOutputStream fos = new FileOutputStream("identificator.bin");
+            fos.write(identificator);
+            fos.close();
+            
+            System.out.println("Identificator generat cu succes");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+// http://www.unit-conversion.info/texttools/random-string-generator/
+// DP9O7qoYZol3tGO2HH0tOqUslWTCfYKUIUgbDBOQtI9J5JfMmGOm8VkYSJo014h1lVw6x5QBvTA1Ga4Qf8fmGRPsmb2WkLvumXIAamNcPrleJmrVSVPydTdQ5xf1mahXhgQIZJq42vH9v470MWZ8m4uJ31faFq3vhTLR7iI7JUfQF9KO6DGtQ7NUR08Oa4xTy8r2qWB0ZnxB8xxLPlrAYmgBbwASmvNzrjXpHkipJxw0pBEKb9VnP0RZVv3Xqbsr

@@ -1,0 +1,35 @@
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StreamTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+    	// BufferedReader -> citire linii din input.txt
+        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+        // StreamTokenizer -> fluxul de caractere in flux de token-uri
+        //                                        (secventa de caractere consecutive)
+        StreamTokenizer st = new StreamTokenizer(br);
+
+        System.out.println("(Formatul trebuie sa fie urmatorul: string int string int)\nCitire din fisier:\n");
+        // iterare prin toate token-urile din input.txt
+        while (st.nextToken() != StreamTokenizer.TT_EOF) {
+            String mesaj = st.sval;
+
+            st.nextToken();
+            int ziua = (int) st.nval;
+
+            st.nextToken();
+            String luna = st.sval;
+
+            st.nextToken();
+            int anul = (int) st.nval;
+
+            System.out.println(mesaj + " " + ziua + " " + luna + " " + anul);
+        }
+        br.close();
+    }
+}

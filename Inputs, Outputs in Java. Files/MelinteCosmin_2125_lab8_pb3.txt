@@ -1,0 +1,35 @@
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.text.DateFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        DateFormatSymbols symbols = new DateFormatSymbols();
+        List<String> date_calendaristice = new ArrayList<>();
+
+        System.out.println("Tasta 'x' opreste citirea");
+        System.out.println("Introdu datele in formatul 'DD/MM/YYYY':");
+        while (true) {
+            String data = scan.nextLine();
+            if (data.equalsIgnoreCase("x")) {
+                break;
+            }
+            date_calendaristice.add(data);
+        }
+
+        System.out.println("\nDatele introduse sunt:");
+        for (String data : date_calendaristice) {
+            String[] parts = data.split("/"); // impartire in 3 subsiruri -> tablou ["27", "03", "2002"]
+            int zi = Integer.parseInt(parts[0]);
+            int luna = Integer.parseInt(parts[1]);
+            int an = Integer.parseInt(parts[2]);
+            String numeleLunii = symbols.getMonths()[luna - 1]; // ianuare = elementul 0
+            System.out.println(zi + " " + numeleLunii + " " + an);
+        }
+    }
+}
