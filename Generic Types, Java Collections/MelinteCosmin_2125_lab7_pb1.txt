@@ -1,0 +1,39 @@
+////////////////////////// Generator.java //////////////////////////
+package project;
+
+public interface Generator<T> {
+    public T next(T var);
+}
+
+////////////////////////// IntGenerator.java //////////////////////////
+package project;
+
+public class IntGenerator implements Generator<Integer> {
+	public Integer next(Integer var) {
+		return var;
+	}
+} // implementare interfata generare valori int
+
+////////////////////////// CharGenerator.java //////////////////////////
+package project;
+
+public class CharGenerator implements Generator<Character> {
+	public Character next(Character var) {
+		return (char) (var);
+	}
+} // implementare interfata generare valori char
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+public class Main {
+	public static void main(String[] args) {
+		Generator<Integer> intGenerator = new IntGenerator();
+		int nextInt = intGenerator.next(27);
+		System.out.println(nextInt);
+		
+		Generator<Character> charGenerator = new CharGenerator();
+		char nextChar = charGenerator.next('C');
+		System.out.println(nextChar);
+	}
+}
