@@ -1,0 +1,32 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main extends JFrame {
+    public Main() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        
+        JLabel label = new JLabel("<html>Melinte Cosmin<br>gr. ~ 2125 ~<html>");
+        label.setForeground(Color.BLUE);
+        //label.setHorizontalAlignment(SwingConstants.CENTER);
+        //label.setVerticalAlignment(SwingConstants.CENTER);
+        
+        Font font = new Font("Helvetica", Font.PLAIN, 20);
+        label.setFont(font);
+        
+        panel.add(label);
+        add(panel);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 200);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+    	// crearea si afisarea ferestrei grafice se realizeaza pe firul de executie al interfetei grafice
+        // evita problemele de sincronizare
+    	SwingUtilities.invokeLater(() -> new Main());
+    }
+}
