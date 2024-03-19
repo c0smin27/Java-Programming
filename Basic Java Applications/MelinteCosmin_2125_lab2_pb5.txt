@@ -1,0 +1,39 @@
+package proiect1;
+
+import java.util.Scanner;
+
+public class root {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Introdu numarul valorilor: ");
+        int nrvalori = input.nextInt();
+        System.out.print("Introdu valorile: ");
+        int[] numere = new int[nrvalori];
+        int i;
+        for (i = 0; i < nrvalori; i++) {
+            numere[i] = input.nextInt();
+        }
+        for (int nr : numere) {
+            System.out.print("\n " + nr + " ");
+            if (NrPrim(nr)) {
+                System.out.print("	- este numar prim");
+            } else {
+                System.out.print("	- NU este numar prim");
+            }
+        }
+    }
+    
+    public static boolean NrPrim(int x) {
+        if (x <= 1) {
+            return false;
+        }
+        else {
+            for (int i = 2; i <= x / 2; i++) {
+                if (x % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}

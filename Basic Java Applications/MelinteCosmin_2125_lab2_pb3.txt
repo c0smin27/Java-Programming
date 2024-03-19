@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class root {
+    public static void main(String[] args) {
+    	Scanner scanner = new Scanner(System.in);
+        System.out.print("Introdu doua numere intregi: ");
+        int nr1 = scanner.nextInt();
+        int nr2 = scanner.nextInt();
+        if (nr1 <=1 || nr2 <= 1) {
+        	System.out.print("(!) Ambele numerele trebuie sa fie >= 1");
+        }
+        else if (nr1 >=1 || nr2 >= 1) {
+            int minim, i, divizor=1;
+            if (nr1 < nr2) {
+            	minim = nr1;
+            }
+            else {
+            	minim = nr2;
+            }
+    		for (i=1; i<=minim; i++) {
+            	if ( nr1 % i == 0 && nr2 % i == 0) {
+            		divizor = i;
+            	}
+            }
+    		System.out.println("CMMDC al numerelor " + nr1 + " si " + nr2 + " este: " + divizor);
+        }
+    }
+}
