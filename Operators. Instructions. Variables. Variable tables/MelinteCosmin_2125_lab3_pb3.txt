@@ -1,0 +1,32 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Introdu un char: ");
+        String sirChar = scanner.nextLine();
+        System.out.print("Se va cauta caracterul 'a' \n");
+        // Conversie String -> Sir de char
+        char[] tablouChar = sirChar.toCharArray();
+        int aux = 0;
+        // Parcurge Sir & numara 'a'
+        for (int i = 0; i < tablouChar.length; i++) {
+            if (tablouChar[i] == 'a') {
+                aux++;
+            }
+        }
+        System.out.println("Caracterul 'a' apare de " + aux + " ori.");
+        // Array nou cu primele 3 caractere din array-ul initial
+        char[] tablouSecund = new char[3];
+        // Pozitie, Pozitie, NrElemente
+        System.arraycopy(tablouChar, 0, tablouSecund, 0, 3);
+        System.out.print("Primele 3 caractere sunt: ");
+        for (char c : tablouSecund) {
+            System.out.print(c);
+        }
+	}
+	
+}

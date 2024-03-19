@@ -1,0 +1,24 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Introdu un char: ");
+        String sirChar = scanner.nextLine();
+        System.out.print("Se va cauta caracterul 'a' \n");
+        // Conversie String -> Sir de char
+        char[] tablouChar = sirChar.toCharArray();
+        int aux = 0;
+        // Parcurge Sir & numara 'a'
+        for (int i = 0; i < tablouChar.length; i++) {
+            if (tablouChar[i] == 'a') {
+                aux++;
+            }
+        }
+        System.out.println("Caracterul 'a' apare de " + aux + " ori.");
+	}
+
+}

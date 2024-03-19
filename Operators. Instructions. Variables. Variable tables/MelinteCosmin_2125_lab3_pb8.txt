@@ -1,0 +1,40 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introduceti numarul de linii pt matrice: ");
+        int m = scanner.nextInt();
+        // matrice cu m linii
+        int[][] matrice = new int[m][];
+        System.out.print("\nIntroduceti 1 element pt linia 1 si continuati pe urmatoarea linie,"
+        		+ "\nintroducand cu 1 element in plus fata de cea anterioara.\n\n");
+        for (int i = 0; i < m; i++) {
+        	// i+1 elemente pentru fiecare linie
+            matrice[i] = new int[i + 1];
+            System.out.print("Linia " + (i + 1) + ": ");
+            for (int j = 0; j <= i; j++) {
+            	// citire elemente matrice
+                matrice[i][j] = scanner.nextInt();
+            }
+        }
+        System.out.println("\nMatricea citita linie cu linie este:");
+        // afisam matricea linie cu linie
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print(matrice[i][j] + " ");
+            }
+            System.out.println();
+        }
+        // afisam matricea coloana cu coloana
+        System.out.println("\nMatricea citita coloana cu coloana este:");
+        for (int j = 0; j < m; j++) {
+            for (int i = j; i < m; i++) {
+                System.out.print(matrice[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}

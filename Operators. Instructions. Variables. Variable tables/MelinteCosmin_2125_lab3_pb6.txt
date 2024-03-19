@@ -1,0 +1,22 @@
+package project;
+
+import java.util.Random;
+
+public class Main {
+
+    public static void main(String[] args) {
+    	 Random random = new Random();
+    	 double x = random.nextInt(9999);
+    	 double y = random.nextInt(9999);
+         System.out.println("Se vor genera doua numere in intervalul [0,9998]\nCele doua numere sunt: " + x +" si " + y);
+         double a = x+y; System.out.println("x + y   = " + a);
+         double b = x-y; System.out.println("x - y   = " + b);
+         double c = x*y; System.out.println("x * y   = " + c);
+         double d = x/y; System.out.println("x / y   = " + d);
+         double e = x*x; System.out.println("x^2     = " + e);
+         double f = y*y; System.out.println("y^2     = " + f);
+         double g = Math.sqrt(x); System.out.println("sqrt(x) = " + g);
+         double h = Math.sqrt(y); System.out.println("sqrt(y) = " + h);
+    }
+    
+}

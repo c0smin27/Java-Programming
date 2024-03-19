@@ -1,0 +1,53 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introdu o valoare intreaga: ");
+        int nr = scanner.nextInt();
+        Binar(nr); Octal(nr); Hexazecimal(nr);
+    }
+    
+    public static void Binar(int x) {
+    	String y = "";
+    	// Conversie nr in baza 2
+    	while (x >= 2) {
+    		y = x%2 + y;
+    		x = x/2;
+    	}
+    	y = x + y;
+    	System.out.println("Binar: " + y);
+    }
+    
+    public static void Octal(int x) {
+    	String y = "";
+    	// Conversie nr in baza 8
+    	while (x >= 8) {
+    		y = x%8 + y;
+    	    x = x /8;
+    	}
+    	y = x + y;
+    	System.out.println("Octal: " + y);
+    }
+    
+    public static void Hexazecimal(int x) {
+    	String y = "";
+    	// Conversie nr in baza 16
+    	while (x >= 16) {
+    		// Cifra corespunzatoare din nr in baza 16
+    		y = getHexa(x%16) + x;
+    	    x = x /16;
+    	}
+    	y = getHexa(x) + y ;
+        System.out.println("Hexa : " + y);
+    }
+    static String getHexa(int n)
+    {
+      String[] num = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+      return num[n];
+    }
+    
+}

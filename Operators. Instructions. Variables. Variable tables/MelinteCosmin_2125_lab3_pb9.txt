@@ -1,0 +1,27 @@
+package project;
+
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        String[] valori = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+        String[] simboluri = {"frunza", "romb", "trefla", "inima"};
+        boolean stop = false;
+        
+        Random rand = new Random();
+        
+        while(!stop) {
+            String valoare = valori[rand.nextInt(valori.length)];
+            String simbol = simboluri[rand.nextInt(simboluri.length)];
+            String carte = valoare + " " + simbol;
+            System.out.println("|   Carte de joc: " + carte + "	|");
+            if(carte.startsWith("9 trefla") || carte.startsWith("10 trefla") || carte.startsWith("J trefla") ||
+            		carte.startsWith("Q trefla") || carte.startsWith("K trefla") || carte.startsWith("A trefla")) {
+            	stop = true;
+            }
+        }
+        System.out.println("         ~~~  WIN!  ~~~");
+    }
+    
+}
