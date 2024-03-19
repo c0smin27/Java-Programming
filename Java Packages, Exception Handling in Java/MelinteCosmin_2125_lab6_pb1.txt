@@ -1,0 +1,29 @@
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Introdu nr de elemente a sirului: ");
+		int n = scan.nextInt();
+		double[] array = new double[n];
+		
+		System.out.print("Introdu elementele: ");
+		for (int i=0; i<n; i++) {
+			array[i] = scan.nextDouble();
+		}
+		
+		System.out.print("Introdu pozitia elementului dorit: ");
+		int pozitie = scan.nextInt();
+		
+		try {
+			double valoare = array[pozitie];
+			System.out.print("Elementul de pe pozitia " + pozitie + " este: " + valoare);
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.print("(!) Pozitie invalida");
+		}
+	}
+}
