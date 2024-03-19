@@ -1,0 +1,100 @@
+////////////////////////// FormaGeometrica.java //////////////////////////
+
+package project;
+
+public interface FormaGeometrica {
+	double Perimetru(int l);
+	double Arie(int l);
+}
+
+////////////////////////// Patrat.java //////////////////////////
+
+package project;
+
+public class Patrat implements FormaGeometrica {
+	@Override
+	public double Perimetru(int l) {
+		return 4 * l;
+	}
+	
+    @Override
+    public double Arie(int l) {
+        return l * l;
+    }
+}
+
+////////////////////////// Triunghi.java //////////////////////////
+
+package project;
+
+public class Patrat implements FormaGeometrica {
+	@Override
+	public double Perimetru(int l) {
+		return 4 * l;
+	}
+	
+    @Override
+    public double Arie(int l) {
+        return l * l;
+    }
+}
+
+////////////////////////// Hexagon.java //////////////////////////
+
+package project;
+
+public class Hexagon implements FormaGeometrica {
+	@Override
+	public double Perimetru(int l) {
+		return 6 * l;
+	}
+	
+    @Override
+    public double Arie(int l) {
+        return l * l * (3 * Math.sqrt(3) / 2);
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);	
+		
+		System.out.print("Introdu numarul de grupuri de forme geometrice: ");
+		int n = scanner.nextInt();
+		
+		double PerimetruTotal = 0;
+		double ArieTotal = 0;
+		System.out.print("\n");
+		
+		for(int i=0; i<n; i++) {
+			System.out.print("Introdu lungimea laturii l pt grupul de forme " + (i+1) + ": ");
+			int l = scanner.nextInt();
+
+			Patrat patrat = new Patrat();
+		    double perimetruPatrat = patrat.Perimetru(l);
+		    double ariePatrat = patrat.Arie(l);
+		    
+			Triunghi triunghi = new Triunghi();
+			double perimetruTriunghi = triunghi.Perimetru(l);
+			double arieTriunghi = triunghi.Arie(l);
+			
+			Hexagon hexagon = new Hexagon();
+		    double perimetruHexagon = hexagon.Perimetru(l);
+		    double arieHexagon = hexagon.Arie(l);
+
+		    double perimetruGrup = perimetruPatrat + perimetruTriunghi + perimetruHexagon;
+		    double arieGrup = ariePatrat + arieTriunghi + arieHexagon;
+		    
+		    PerimetruTotal += perimetruGrup;
+		    ArieTotal += arieGrup;
+		}
+		System.out.print("\nPerimetrul total al tuturor grupurilor de forme este: " + PerimetruTotal);
+		System.out.print("\nAria totala a tuturor grupurilor de forme este: " + ArieTotal);
+	}
+}

@@ -1,0 +1,101 @@
+////////////////////////// Fractie.java //////////////////////////
+package project;
+
+public class Fractie {
+    protected int a; //numarator
+    protected int b; //numitor
+
+    public Fractie() {
+        this.a = 0;
+        this.b = 1;
+    } //constructor explicit fara parametri
+    
+    public Fractie(int a, int b) {
+        this.a = a;
+        this.b = b;
+    } //constructor explicit cu 2 parametri
+    
+    public int getA() {
+        return this.a;
+    }
+    public void setA(int a) {
+        this.a = a;
+    }
+    
+    public int getB() {
+        return this.b;
+    }
+    public void setB(int b) {
+        this.b = b;
+    }
+    
+    public int cmmdc(int x, int y) {
+        while (y != 0) {
+            int aux = y;
+            y = x % y;
+            x = aux;
+        }
+        return x;
+    }
+    
+    public void simplifica() {
+        int divizor = cmmdc(a, b);
+        a = a / divizor;
+        b = b / divizor;
+    }
+    
+    @Override
+    public String toString() {
+        return a + "/" + b;
+    }
+}
+
+////////////////////////// FractieExtinsa.java //////////////////////////
+package project;
+
+public class FractieExtinsa extends Fractie {
+    public FractieExtinsa(int a, int b) {
+        super(a, b);
+    }
+
+    @Override
+    public int cmmdc(int x, int y) {
+        while (x != 0 && y != 0) {
+            if (x > y) {
+                x -= y;
+            } else {
+                y -= x;
+            }
+        }
+        return x + y;
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+    	
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introdu numarul de fractii: ");
+		int n = scanner.nextInt();
+		
+        Fractie[] fractii = new Fractie[n];
+        System.out.print("\n");
+        
+        for (int i = 0; i < n; i++) {
+            System.out.print("Introdu fractia " + (i+1) + ": ");
+            int numarator = scanner.nextInt();
+            int numitor = scanner.nextInt();
+            fractii[i] = new Fractie(numarator, numitor);
+        }
+        
+        for (int i = 0; i < n; i++) {
+            fractii[i].simplifica();
+            System.out.print("\nFractia " + (i+1) + " simplificata: " + fractii[i].toString());
+        }
+    }
+}

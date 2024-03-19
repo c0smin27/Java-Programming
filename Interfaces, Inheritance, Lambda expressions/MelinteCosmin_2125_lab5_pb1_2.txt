@@ -1,0 +1,65 @@
+/////////// Cele 4 interfete scrise fiecare separat ///////////
+
+package project;
+public interface plus {
+    double plus(double x, double y);
+}
+
+package project;
+public interface minus {
+	double minus(double x, double y);
+}
+
+package project;
+public interface ori {
+	double ori(double a, double b);
+}
+
+package project;
+public interface div {
+	double div(double x, double y);
+}
+
+////////////////////////// Calcule.java //////////////////////////
+
+package project;
+
+public class Calcule implements plus, minus, ori, div {
+
+    public double plus(double x, double y) {
+        return x + y;
+    }
+    public double minus(double x, double y) {
+        return x - y;
+    }
+    public double ori(double x, double y) {
+        return x * y;
+    }
+    public double div(double x, double y) {
+        return x / y;
+    }
+    
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+public class Main {
+
+    public static void main(String[] args) {
+        plus plus = (x, y) -> x + y;
+        minus minus = (x, y) -> x - y;
+        ori ori = (x, y) -> x * y;
+        div div = (x, y) -> x / y;
+        double x = 2;
+        double y = 1;
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("x + y = " + plus.plus(x, y));
+        System.out.println("x - y = " + minus.minus(x, y));
+        System.out.println("x * y = " + ori.ori(x, y));
+        System.out.println("x / y = " + div.div(x, y));
+    }
+    
+}

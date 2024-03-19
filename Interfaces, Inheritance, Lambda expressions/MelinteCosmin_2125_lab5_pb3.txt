@@ -1,0 +1,158 @@
+////////////////////////// FiguraSpatiala.java //////////////////////////
+package project;
+
+public abstract class FiguraSpatiala {
+	protected String denumire;
+	
+	public FiguraSpatiala(String denumire) {
+		this.denumire = denumire;
+	}
+	
+	public abstract double aria();
+	
+	public String toString() {
+		return denumire;
+	}
+}
+
+////////////////////////// Sfera.java //////////////////////////
+package project;
+
+class Sfera extends FiguraSpatiala {
+	private int raza;
+	
+	public Sfera(int raza) {
+		super("Sfera");
+		this.raza = raza;
+	}
+	
+	@Override
+	public double aria() {
+		return 4 * Math.PI * raza * raza;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + raza;
+	}
+	
+	public int getRaza() {
+		return raza;
+	}
+	
+	public void setRaza(int raza) {
+		this.raza = raza;
+	}
+}
+
+////////////////////////// Cub.java //////////////////////////
+package project;
+
+class Cub extends FiguraSpatiala {
+	private int latura;
+	
+	public Cub(int latura) {
+		super("Cub");
+		this.latura = latura;
+	}
+	
+	@Override
+	public double aria() {
+		return 6 * latura * latura;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + latura;
+	}
+	
+	public int getLatura() {
+		return latura;
+	}
+	
+	public void setLatura(int latura) {
+		this.latura = latura;
+	}
+}
+
+////////////////////////// Cilindru.java //////////////////////////
+package project;
+
+class Cilindru extends FiguraSpatiala {
+	private int raza_bazei, inaltimea;
+	
+	public Cilindru(int raza_bazei, int inaltimea) {
+		super("Cilindru");
+		this.raza_bazei = raza_bazei;
+		this.inaltimea = inaltimea;
+	}
+	
+	@Override
+	public double aria() {
+		return 2 * Math.PI * raza_bazei * inaltimea + 2 * Math.PI * raza_bazei * raza_bazei;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + raza_bazei + inaltimea;
+	}
+	
+	public int getRazaBazei() {
+		return raza_bazei;
+	}
+	
+	public void setRazaBazei(int raza_bazei) {
+		this.raza_bazei = raza_bazei;
+	}
+	
+	public int getInaltimea() {
+		return inaltimea;
+	}
+	
+	public void setINaltimea(int inaltimea) {
+		this.inaltimea = inaltimea;
+	}
+}
+
+////////////////////////// Vopsea.java //////////////////////////
+package project;
+
+public interface Vopsea {
+    static float VopseaPeUnitateaDeSuprafata() {
+    	return 1;
+    }
+}
+
+
+////////////////////////// Vopsitorie.java //////////////////////////
+package project;
+
+import java.util.Scanner;
+
+public class Vopsitorie implements Vopsea {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("Introdu raza sferei: ");
+		int raza = scanner.nextInt();
+		System.out.print("Introdu latura cubului: ");
+		int latura = scanner.nextInt();
+		System.out.print("Introdu raza bazei si inaltimea cilindrului: ");
+		int raza_bazei = scanner.nextInt();
+		int inaltimea = scanner.nextInt();
+		
+		Sfera sfera = new Sfera(raza);
+		Cub cub = new Cub(latura);
+		Cilindru cilindru = new Cilindru(raza_bazei, inaltimea);
+		
+		float VopseaSfera = (float) (sfera.aria() * Vopsea.VopseaPeUnitateaDeSuprafata());
+		float VopseaCub = (float) (cub.aria() * Vopsea.VopseaPeUnitateaDeSuprafata());
+		float VopseaCilindru = (float) (cilindru.aria() * Vopsea.VopseaPeUnitateaDeSuprafata());
+		float Total = VopseaSfera + VopseaCub + VopseaCilindru;
+		
+		System.out.print("\nPentru acoperirea sferei de raza " + raza + " sunt necesari " + VopseaSfera + " litri de vopsea");
+		System.out.print("\nPentru acoperirea cubului de latura " + latura + " sunt necesari " + VopseaCub + " litri de vopsea");
+		System.out.print("\nPentru acoperirea cilindrului cu raza bazei " + raza_bazei + " si inaltimea " + inaltimea + " sunt necesari " + VopseaCilindru + " litri de vopsea");
+		System.out.print("\n\nPentru acoperirea tuturor formelor sunt necesari " + Total + " litri de vopsea");
+	}
+}
