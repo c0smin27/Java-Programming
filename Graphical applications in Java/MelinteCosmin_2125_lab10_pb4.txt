@@ -1,0 +1,52 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main extends JFrame {
+    public Main() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(true);
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                int latime = getWidth();
+                int inaltime = getHeight();
+                int liniiGri = 10;
+                int latimeLinii = latime / liniiGri; // latimea liniilor in fnct de dimensiuni fereastra
+
+                for (int i = 0; i < liniiGri; i++) {
+                    int gradient = i * 255 / liniiGri; // nivelul de gri pt linia curenta
+                    g.setColor(new Color(gradient, gradient, gradient));
+                    g.fillRect(i * latimeLinii, 0, latimeLinii, inaltime);
+                }
+
+                g.setColor(Color.RED);
+                g.fillRect(0, inaltime-20, latime, 20);
+                g.setColor(Color.GREEN);
+                g.fillRect(0, inaltime-40, latime, 20);  
+        		g.setColor(Color.BLUE);
+                g.fillRect(0, inaltime-60, latime, 20);
+                g.setColor(Color.YELLOW);
+                g.fillRect(0, inaltime-80, latime, 20);
+                g.setColor(Color.CYAN);
+                g.fillRect(0, inaltime-100, latime, 20);
+                g.setColor(Color.MAGENTA);
+                g.fillRect(0, inaltime-120, latime, 20);
+            }
+        };
+
+        getContentPane().add(panel);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Main fereastra = new Main();
+            fereastra.setVisible(true);
+        });
+    }
+}

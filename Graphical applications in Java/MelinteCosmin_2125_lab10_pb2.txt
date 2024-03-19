@@ -1,0 +1,39 @@
+package project;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Main extends JFrame {
+    public Main() {
+        add(new Cerc());
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public static void main(String args[]) {
+        new Main();
+    }
+}
+
+class Cerc extends JPanel {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+        int latime = getWidth();
+        int inaltime = getHeight();
+        
+        // minimul dintre latime,inaltime
+        int diametru = Math.min(latime, inaltime); 
+        
+        // centrare pe panel
+        int x = (latime - diametru) / 2; 
+        int y = (inaltime - diametru) / 2;
+        
+        g.setColor(Color.RED);
+        g.fillOval(x, y, diametru, diametru);
+    }
+}

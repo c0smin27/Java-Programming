@@ -1,0 +1,74 @@
+package project;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+class MyFrame extends JFrame {
+    MyPanel panel;
+    
+    MyFrame() {
+        panel = new MyPanel();
+        add(panel);
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+}
+
+class MyPanel extends JPanel {
+    BufferedImage image;
+    String fileName;
+    Font font;
+    Color color;
+    
+    MyPanel() {
+        try {
+            File file = new File("image_01.jpg");
+            image = ImageIO.read(file);
+            fileName = file.getName();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("\nImaginea nu a putut fi citita\nAsigura-te ca imaginea se afla in folderul proiectului");
+            System.exit(1);
+        }
+        
+        font = new Font("Helvetica", Font.PLAIN, 20);
+        color = new Color(25,25,112);
+        
+        // dimensiune panou
+        setPreferredSize(new Dimension(image.getWidth(), image.getHeight() + 50));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+        // desenarea imaginii
+        g.drawImage(image, 0, 0, this);
+        
+        // setarea font și culoare text
+        g.setFont(font);
+        g.setColor(color);
+        
+        // coordonate text
+        int x = 10;
+        int y = image.getHeight() + 30;
+        
+        // desenarea nume
+        g.drawString(fileName, x, y);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyFrame frame = new MyFrame();
+    }
+}
