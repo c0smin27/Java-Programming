@@ -1,0 +1,122 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Formular Inregistrare");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        JLabel labelNume = new JLabel("Nume");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(labelNume, gbc);
+        JTextField textNume = new JTextField(15);
+        gbc.gridx = 1;
+        panel.add(textNume, gbc);
+        
+        JLabel labelPrenume = new JLabel("Prenume");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelPrenume, gbc);
+        JTextField textPrenume = new JTextField(15);
+        gbc.gridx = 1;
+        panel.add(textPrenume, gbc);
+        
+        JLabel labelAn = new JLabel("An de studii");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelAn, gbc);
+        String[] anStudii = {"Anul 1", "Anul 2", "Anul 3", "Anul 4", "Master 1", "Master 2"};
+        JComboBox<String> comboBoxAn = new JComboBox<>(anStudii);
+        gbc.gridx = 1;
+        panel.add(comboBoxAn, gbc);
+        
+        JLabel labelFacultate = new JLabel("An de studii");
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelFacultate, gbc);
+        String[] facultati = {"Universitatea Tehnica din Cluj-Napoca", "Universitatea Babes-Bolyai",
+        		"Universitatea de Medicina si Farmacie", "Universitatea de Arta si Design"};
+        JComboBox<String> comboBoxfacultati = new JComboBox<>(facultati);
+        gbc.gridx = 1;
+        panel.add(comboBoxfacultati, gbc);
+        
+        JLabel labelFinantare = new JLabel("Finantare");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(labelFinantare, gbc);
+        JCheckBox checkBoxTaxa = new JCheckBox("Taxa");
+        JCheckBox checkBoxBuget = new JCheckBox("Buget");
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(checkBoxTaxa);
+        buttonGroup.add(checkBoxBuget);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(checkBoxTaxa, gbc);
+        gbc.gridx = 2;
+        gbc.gridy = 4;
+        panel.add(checkBoxBuget, gbc);
+        
+        JLabel labelCurs = new JLabel("An de studii");
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(labelCurs, gbc);
+        String[] Cursuri = {"Inginerie software", "uUnde", "CIA", "CAD", "SCID", "ASC", "MET"};
+        JComboBox<String> comboBoxCurs = new JComboBox<>(Cursuri);
+        gbc.gridx = 1;
+        panel.add(comboBoxCurs, gbc);
+        
+        JTextArea textArea = new JTextArea(7, 35);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 3;
+        panel.add(scrollPane, gbc);
+        
+        JButton button = new JButton("Afiseaza");
+        button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String nume = textNume.getText();
+                String prenume = textPrenume.getText();
+                String anStudii = (String) comboBoxAn.getSelectedItem();
+                String facultate = (String) comboBoxfacultati.getSelectedItem();
+                String finantare = "";
+                if (checkBoxTaxa.isSelected()) {
+                    finantare += "Taxa ";
+                }
+                if (checkBoxBuget.isSelected()) {
+                    finantare += "Buget";
+                }
+                String curs = (String) comboBoxCurs.getSelectedItem();
+
+                String rezultat = "Nume: " + nume + "\n";
+                rezultat += "Prenume: " + prenume + "\n";
+                rezultat += "An de studii: " + anStudii + "\n";
+                rezultat += "Facultate: " + facultate + "\n";
+                rezultat += "Finantare: " + finantare + "\n";
+                rezultat += "Curs: " + curs + "\n";
+                textArea.setText(rezultat);
+        	}
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        panel.add(button, gbc);
+        
+        frame.add(panel);
+        
+        frame.pack();
+        frame.setVisible(true);
+    }
+}

@@ -1,0 +1,106 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+
+        // // primul panou
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new BorderLayout());
+        // zona desenare
+        Canvas canvas = new Canvas();
+        panel1.add(canvas, BorderLayout.CENTER);
+        //end
+        tabbedPane.addTab("Panoul 1", panel1);
+
+
+        // // al doilea panou
+        JPanel panel2 = new JPanel();
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        // formatari text
+        // tip text
+        JPanel row1 = new JPanel();
+        row1.setLayout(new FlowLayout(FlowLayout.LEFT));
+        row1.add(new JLabel("Font Style:"));
+        row1.add(new JComboBox<>(new String[]{"Arial", "Helvetica", "Times New Roman",
+                "Courier New", "Verdana", "Calibri", "Tahoma", "Georgia", "Impact", "Comic Sans MS"}));
+        panel2.add(row1);
+        // marime text
+        JPanel row2 = new JPanel();
+        row2.setLayout(new FlowLayout(FlowLayout.LEFT));
+        row2.add(new JLabel("Font Size:"));
+        row2.add(new JComboBox<>(new String[]{"Rosu", "Verde", "Albastru", "Galben",
+                "Portocaliu", "Violet", "Roz", "Negru", "Alb"}));
+        panel2.add(row2);
+        // culoare text
+        JPanel row3 = new JPanel();
+        row3.setLayout(new FlowLayout(FlowLayout.LEFT));
+        row3.add(new JLabel("Font Color:"));
+        row3.add(new JComboBox<>(new String[]{"10", "11", "12", "13", "14", "15", "16",
+                "17", "18", "19", "20"}));
+        panel2.add(row3);
+        //end
+        tabbedPane.addTab("Panoul 2", panel2);
+
+
+        // // al treilea panou
+        JPanel panel3 = new JPanel();
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+        JPanel forme = new JPanel();
+        forme.setLayout(new FlowLayout(FlowLayout.LEFT));
+        forme.add(new JLabel("Forma Geometrica:"));
+        JComboBox<String> formaComboBox = new JComboBox<>(new String[]{"Cerc", "Patrat",
+        		"Dreptunghi", "Triunghi Dreptunghic"});
+        forme.add(formaComboBox);
+        panel3.add(forme);
+
+        JPanel selectii = new JPanel();
+        selectii.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        formaComboBox.addActionListener(e -> {
+            selectii.removeAll();
+            selectii.revalidate();
+            selectii.repaint();
+
+            String formaSelectata = (String) formaComboBox.getSelectedItem();
+
+            if (formaSelectata.equals("Cerc")) {
+                selectii.add(new JLabel("Raza:"));
+                selectii.add(new JTextField(10));
+            } else if (formaSelectata.equals("Patrat")) {
+                selectii.add(new JLabel("Latura:"));
+                selectii.add(new JTextField(10));
+            } else if (formaSelectata.equals("Dreptunghi")) {
+                selectii.add(new JLabel("Lungime:"));
+                selectii.add(new JTextField(10));
+                selectii.add(new JLabel("Latime:"));
+                selectii.add(new JTextField(10));
+            } else if (formaSelectata.equals("Triunghi Dreptunghic")) {
+                selectii.add(new JLabel("Cateta1:"));
+                selectii.add(new JTextField(10));
+                selectii.add(new JLabel("Cateta2:"));
+                selectii.add(new JTextField(10));
+                selectii.add(new JLabel("Ipotenuza:"));
+                selectii.add(new JTextField(10));
+            }
+            selectii.revalidate();
+            selectii.repaint();
+        });
+        panel3.add(selectii);
+        //end
+        tabbedPane.addTab("Panoul 3", panel3);
+
+        // frame
+        frame.add(tabbedPane);
+        frame.setSize(400, 300);
+        frame.setVisible(true);
+    }
+}

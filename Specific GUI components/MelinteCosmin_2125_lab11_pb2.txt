@@ -1,0 +1,119 @@
+package project;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+	public static void main(String[] args) {
+		// frame window
+		JFrame frame = new JFrame("Calculator");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+
+		// panel to hold the components
+		JPanel panel = new JPanel();
+		GridBagLayout layout = new GridBagLayout();
+		panel.setLayout(layout);
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		// text field
+		JTextField textField = new JTextField();
+		textField.setHorizontalAlignment(JTextField.RIGHT);
+
+		// set constraints for the text field
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 4; // set across all columns
+		panel.add(textField, gbc);
+
+		gbc.gridwidth = 1; // reset grid width to 1
+		
+		// put constraints on different buttons
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		panel.add(new JButton("C"), gbc);
+
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		panel.add(new JButton("()"), gbc);
+
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		panel.add(new JButton("%"), gbc);
+
+		gbc.gridx = 3;
+		gbc.gridy = 1;
+		panel.add(new JButton("/"), gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		panel.add(new JButton("7"), gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		panel.add(new JButton("8"), gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		panel.add(new JButton("9"), gbc);
+		
+		gbc.gridx = 3;
+		gbc.gridy = 1;
+		panel.add(new JButton("x"), gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		panel.add(new JButton("4"), gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		panel.add(new JButton("5"), gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 2;
+		panel.add(new JButton("6"), gbc);
+		
+		gbc.gridx = 3;
+		gbc.gridy = 2;
+		panel.add(new JButton("-"), gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		panel.add(new JButton("1"), gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		panel.add(new JButton("2"), gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 3;
+		panel.add(new JButton("3"), gbc);
+		
+		gbc.gridx = 3;
+		gbc.gridy = 3;
+		panel.add(new JButton("+"), gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		panel.add(new JButton("+/-"), gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 4;
+		panel.add(new JButton("0"), gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 4;
+		panel.add(new JButton(","), gbc);
+		
+		gbc.gridx = 3;
+		gbc.gridy = 4;
+		panel.add(new JButton("="), gbc);
+
+		frame.add(panel);
+
+		// show the window
+		frame.pack();
+		frame.setVisible(true);
+	}
+}
