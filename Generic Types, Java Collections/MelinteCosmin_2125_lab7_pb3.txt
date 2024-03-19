@@ -1,0 +1,159 @@
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // crearea colectiilor de obiecte
+        List<Copil> copii = new ArrayList<>();
+        List<Adult> adulti = new ArrayList<>();
+        List<Pensionar> pensionari = new ArrayList<>();
+        
+        // citire intrari pt copii
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introdu numarul de copii: ");
+        int nr_copii = scanner.nextInt();
+        scanner.nextLine(); // golire buffer
+        
+        // citire date si creare obiecte copil
+        System.out.print("Introdu datele copiilor: ");
+        System.out.print("\n");
+        for (int i = 0; i < nr_copii; i++) {
+            System.out.print("Nume: ");
+            String nume = scanner.nextLine();
+            System.out.print("Varsta: ");
+            int varsta = scanner.nextInt();
+            scanner.nextLine(); // golire buffer
+            Copil copil = new Copil();
+            copil.setNume(nume);
+            copil.setVarsta(varsta);
+            copii.add(copil);
+        }
+        
+        // citire intrari pt adulti
+        System.out.print("\nIntrodu numarul de adulti: ");
+        int nr_adulti = scanner.nextInt();
+        scanner.nextLine(); // golire buffer
+        
+        // citire date si creare obiecte adult
+        System.out.print("Introdu datele adultilor: ");
+        System.out.print("\n");
+        for (int i = 0; i < nr_adulti; i++) {
+        	System.out.print("Nume: ");
+            String nume = scanner.nextLine();
+            System.out.print("Varsta: ");
+            int varsta = scanner.nextInt();
+            scanner.nextLine(); // golire buffer
+            Adult adult = new Adult();
+            adult.setNume(nume);
+            adult.setVarsta(varsta);
+            adulti.add(adult);
+        }
+
+        // citire intrari pt pensionari
+        System.out.print("\nIntrodu numarul de pensionari: ");
+        int nr_pensionari = scanner.nextInt();
+        scanner.nextLine(); // golire buffer
+        
+        // citire date si creare obiecte pensionar
+        System.out.print("Introdu datele pensionarilor: ");
+        System.out.print("\n");
+        for (int i = 0; i < nr_pensionari; i++) {
+        	System.out.print("Nume: ");
+            String nume = scanner.nextLine();
+            System.out.print("Varsta: ");
+            int varsta = scanner.nextInt();
+            scanner.nextLine(); // golire buffer
+            Pensionar pensionar = new Pensionar();
+            pensionar.setNume(nume);
+            pensionar.setVarsta(varsta);
+            pensionari.add(pensionar);
+        }
+        System.out.print("\n-----------------------------");
+        System.out.print("\n\n");
+        
+        // afisare obiecte
+        System.out.print("Copii: ");
+        System.out.print("\n");
+        for (Copil copil : copii) {
+            System.out.println(copil.getNume() + " - " + copil.getVarsta() + " ani");
+        }
+
+        System.out.print("\n");
+        System.out.print("Adulti: ");
+        System.out.print("\n");
+        for (Adult adult : adulti) {
+            System.out.println(adult.getNume() + " - " + adult.getVarsta() + " ani");
+        }
+        
+        System.out.print("\n");
+        System.out.print("Pensionari: ");
+        System.out.print("\n");
+        for (Pensionar pensionar : pensionari) {
+            System.out.println(pensionar.getNume() + " - " + pensionar.getVarsta() + " ani");
+        }
+    }
+}
+
+class SetterGetter<T> {
+    private T obiect;
+    public void setObiect(T obiect) {
+        this.obiect = obiect;
+    }
+    public T getObiect() {
+        return obiect;
+    }
+} // clasa generica
+
+class Copil {
+    private String nume;
+    private int varsta;
+    public String getNume() {
+        return nume;
+    }
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+    public int getVarsta() {
+        return varsta;
+    }
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
+    }
+}
+
+class Adult {
+    private String nume;
+    private int varsta;
+    public String getNume() {
+        return nume;
+    }
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+    public int getVarsta() {
+        return varsta;
+    }
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
+    }
+}
+
+class Pensionar {
+    private String nume;
+    private int varsta;
+    public String getNume() {
+        return nume;
+    }
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+    public int getVarsta() {
+        return varsta;
+    }
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
+    }
+}

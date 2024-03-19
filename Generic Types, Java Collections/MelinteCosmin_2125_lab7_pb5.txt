@@ -1,0 +1,115 @@
+////////////////////////// Student.java //////////////////////////
+package project;
+
+public class Student {
+	private String nume;
+	private int grupa;
+	private double media;
+	
+	public Student(String nume, int grupa, double media) {
+		this.nume = nume;
+		this.grupa = grupa;
+		this.media = media;
+	} // constructorul clasei
+	
+	public String getNume() {
+		return nume;
+	}
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+	
+    public int getGrupa() {
+        return grupa;
+    }
+    public void setGrupa(int grupa) {
+        this.grupa = grupa;
+    }
+    
+    public double getMedia() {
+        return media;
+    }
+    public void setMedia(double media) {
+        this.media = media;
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.util.Comparator;
+import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.Iterator;
+
+class StudentComparator implements Comparator<Student> {
+	public int compare(Student s1, Student s2) {
+		if (s1.getMedia() != s2.getMedia()) {
+			return Double.compare(s2.getMedia(), s1.getMedia()); // sort descrescator dupa medie
+		}
+		else {
+			int numeCompare = s1.getNume().compareTo(s2.getNume()); // sort crescator dupa nume
+			if (numeCompare != 0) {
+				return numeCompare;
+			}
+			else {
+				return Integer.compare(s1.getGrupa(), s2.getGrupa()); // sort crescator dupa grupa
+			}
+		}
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Introdu numarul de studenti: ");
+		int nr = scan.nextInt();
+		System.out.print("\n");
+		
+		SortedSet<Student> studenti = new TreeSet<Student>(new StudentComparator());
+		
+		// citire si creare obiecte Student
+		for (int i = 0; i < nr; i++) {
+			System.out.print("Studentul "+ (i+1) +":\n");
+			System.out.print("Nume: ");
+			String nume = scan.next();
+			System.out.print("Grupa: ");
+			int grupa = scan.nextInt();
+			System.out.print("Media: ");
+			double media = scan.nextDouble();
+			System.out.print("\n");
+			
+			Student student = new Student(nume, grupa, media);
+			studenti.add(student);
+		}
+		
+		// afisare colectie sortata
+		System.out.print("Lista studentilor dupa medie: \n");
+		for (Student student : studenti) {
+			System.out.println(student.getNume() + " - " + student.getGrupa() + " - " + student.getMedia());
+		}
+		
+		// parcurgere cu iterator
+		System.out.print("\nLista studentilor cu media >= 8:\n");
+		Iterator<Student> iterator = studenti.iterator();
+		while (iterator.hasNext()) {
+		    Student student = iterator.next();
+		    if (student.getMedia() >= 8.0) {
+		        System.out.println(student.getNume() + " - " + student.getGrupa() + " - " + student.getMedia());
+		    }
+		}
+		
+		// parcurgere cu forEach()
+		System.out.print("\nIntrodu grupa care sa fie afisata: ");
+		int nr_grupa = scan.nextInt();
+		System.out.println("Studentii din grupa " + nr_grupa + " sunt:");
+		studenti.forEach(student -> {
+		    if(student.getGrupa() == nr_grupa) {
+		        System.out.println(student.getNume() + " - " + student.getGrupa() + " - " + student.getMedia());
+		    }
+		});
+
+
+	}
+}

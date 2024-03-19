@@ -1,0 +1,111 @@
+////////////////////////// Angajat.java //////////////////////////
+package project;
+
+public class Angajat implements Comparable<Angajat> {
+	private String nume;
+    private int varsta;
+    private double salariu;
+    
+    public Angajat(String nume, int varsta, double salariu) {
+    	this.nume = nume;
+        this.varsta = varsta;
+        this.salariu = salariu;
+    }
+    
+    public String getNume() {
+        return nume;
+    }
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+    
+    public int getVarsta() {
+        return varsta;
+    }
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
+    }
+    
+    public double getSalariu() {
+        return salariu;
+    }
+    public void setSalariu(double salariu) {
+        this.salariu = salariu;
+    }
+    
+    @Override
+    public int compareTo(Angajat o) {
+        return this.nume.compareTo(o.nume);
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+        List<Angajat> angajati = new ArrayList<>();
+        
+        System.out.print("Introdu numarul de angajati: ");
+        int nr = scanner.nextInt();
+        scanner.nextLine(); // buffer
+        
+        for (int i = 0; i < nr; i++) {
+        	System.out.print("\nAngajatul " + (i+1) +":\n");
+            System.out.print("Nume: ");
+            String nume = scanner.nextLine();
+            
+            System.out.print("Varsta: ");
+            int varsta = scanner.nextInt();
+            scanner.nextLine(); // buffer
+            
+            System.out.print("Salariu: ");
+            double salariu = scanner.nextDouble();
+            scanner.nextLine(); // buffer
+            
+            Angajat angajat = new Angajat(nume, varsta, salariu);
+            angajati.add(angajat);
+        }
+        
+        // sortare+afis lista angajati dupa nume
+        Collections.sort(angajati);
+        System.out.print("\nLista angajatilor alfabetic dupa nume:\n");
+        for (Angajat angajat : angajati) {
+            System.out.println(angajat.getNume() + " - " + angajat.getVarsta() + " ani - " + angajat.getSalariu() + " lei");
+        }
+        
+        // sortare+afis lista angajati dupa varsta
+        Collections.sort(angajati, (a1, a2) -> Integer.compare(a2.getVarsta(), a1.getVarsta()));
+        System.out.print("\nLista angajatilor descrescator dupa varsta:\n");
+        for (Angajat angajat : angajati) {
+            System.out.println(angajat.getNume() + " - " + angajat.getVarsta() + " ani - " + angajat.getSalariu() + " lei");
+        }
+        
+        // sortare+afis lista angajati crescator dupa nume si descrescator dupa salariu
+        Collections.sort(angajati, new Comparator<Angajat>() {
+            @Override
+            public int compare(Angajat o1, Angajat o2) {
+                int compareNume = o1.getNume().compareTo(o2.getNume()); // crescator
+                int compareSalariu = Double.compare(o2.getSalariu(), o1.getSalariu()); // descrescator
+                
+                // crescator dupa nume si descrescator dupa salariu
+                if (compareNume == 0) {
+                    return compareSalariu;
+                } else {
+                    return compareNume;
+                }
+            }
+        });
+        System.out.print("\nLista angajatilor alfabetic dupa nume si descrescator dupa salariu:\n");
+        for (Angajat angajat : angajati) {
+            System.out.println(angajat.getNume() + " - " + angajat.getVarsta() + " ani - " + angajat.getSalariu() + " lei");
+        }
+	}
+}

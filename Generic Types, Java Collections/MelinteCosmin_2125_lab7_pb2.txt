@@ -1,0 +1,123 @@
+////////////////////////// Calculator.java //////////////////////////
+package project;
+
+public class Calculator {
+	
+	// ADUNARE
+	public static <T extends Number> T plus(T x, T y) {
+		// convert values -> double
+		double plus = x.doubleValue() + y.doubleValue();
+		
+		if (x instanceof Integer && y instanceof Integer) {
+			return (T) (Integer) (int) plus;
+		}
+		else if (x instanceof Double || y instanceof Double) {
+			return (T) (Double) plus;
+		}
+		else if (x instanceof Float || y instanceof Float) {
+			return (T) (Float) (float) plus;
+		}
+		else {
+			// eroare tip de date
+			throw new IllegalArgumentException("Tip de date gresit");
+		}
+	}
+	
+	// SCADERE
+	public static <T extends Number> T minus(T x, T y) {
+		// convert values -> double
+		double minus = x.doubleValue() - y.doubleValue();
+		
+		if (x instanceof Integer && y instanceof Integer) {
+			return (T) (Integer) (int) minus;
+		}
+		else if (x instanceof Double || y instanceof Double) {
+			return (T) (Double) minus;
+		}
+		else if (x instanceof Float || y instanceof Float) {
+			return (T) (T) (Float) (float) minus;
+		}
+		else {
+			throw new IllegalArgumentException("Tip de date gresit");
+		}
+	}
+	
+	// INMULTIRE
+	public static <T extends Number> T ori(T x, T y) {
+		// convert values -> double
+		double ori = x.doubleValue() * y.doubleValue();
+		
+		if (x instanceof Integer && y instanceof Integer) {
+			return (T) (Integer) (int) ori;
+		}
+		else if (x instanceof Double || y instanceof Double) {
+			return (T) (Double) ori;
+		}
+		else if (x instanceof Float || y instanceof Float) {
+			return (T) (T) (Float) (float) ori;
+		}
+		else {
+			throw new IllegalArgumentException("Tip de date gresit");
+		}
+	}
+	
+	// IMPARTIRE
+	public static <T extends Number> T div(T x, T y) {
+		if(y.doubleValue() == 0.0) {
+			throw new IllegalArgumentException("Imposibil de imparit la zero");
+		}
+		if(x instanceof Double || x instanceof Float || y instanceof Double || y instanceof Float) {
+			// convert nr -> double
+			return (T) (Number) (x.doubleValue() / y.doubleValue());
+		}
+		else {
+			// convert nr -> long
+			return (T) (Number) (x.longValue() / y.longValue());
+		}
+	}
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		int a = 10, b = 10;
+		double c = 2.5, d = 2.0;
+		System.out.println("a = "+a+"; b = "+b+";\nc = "+c+"; d = "+d+";");
+		System.out.println();
+		
+		// ADUNARE
+		System.out.println("Adunare:");
+		System.out.println(a + " + " + b + " = " + Calculator.plus(a, b));
+		System.out.println(c + " + " + d + " = " + Calculator.plus(c, d));
+		System.out.println(a + " + " + d + " = " + Calculator.plus(a, d));
+		System.out.println(b + " + " + c + " = " + Calculator.plus(b, c));
+		System.out.println();
+		
+		// SCADERE
+		System.out.println("Scadere:");
+		System.out.println(a + " - " + b + " = " + Calculator.minus(a, b));
+		System.out.println(c + " - " + d + " = " + Calculator.minus(c, d));
+		System.out.println(a + " - " + d + " = " + Calculator.minus(a, d));
+		System.out.println(b + " - " + c + " = " + Calculator.minus(b, c));
+		System.out.println();
+
+		// INMULTIRE
+		System.out.println("Inmultire:");
+		System.out.println(a + " * " + b + " = " + Calculator.ori(a, b));
+		System.out.println(c + " * " + d + " = " + Calculator.ori(c, d));
+		System.out.println(a + " * " + d + " = " + Calculator.ori(a, d));
+		System.out.println(b + " * " + c + " = " + Calculator.ori(b, c));
+		System.out.println();
+
+		// IMPARTIRE
+		System.out.println("Impartire:");
+		System.out.println(a + " / " + b + " = " + Calculator.div(a, b));
+		System.out.println(c + " / " + d + " = " + Calculator.div(c, d));
+		System.out.println(a + " / " + d + " = " + Calculator.div(a, d));
+		System.out.println(b + " / " + c + " = " + Calculator.div(b, c));
+		System.out.println();
+	}
+}

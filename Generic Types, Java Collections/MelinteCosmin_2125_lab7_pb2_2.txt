@@ -1,0 +1,94 @@
+////////////////////////// CalculatorSecundar.java //////////////////////////
+package project;
+
+public class CalculatorSecundar {
+
+	// ADUNARE
+	public static int plus(int x, int y) {
+		return x + y;
+	}
+	public static double plus(double x, double y) {
+		return x + y;
+	}
+	public static float plus(float x, float y) {
+		return x + y;
+	}
+
+	// SCADERE
+	public static int minus(int x, int y) {
+		return x - y;
+	}
+	public static double minus(double x, double y) {
+		return x - y;
+	}
+	public static float minus(float x, float y) {
+		return x - y;
+	}
+
+	// INMULTIRE
+	public static int ori(int x, int y) {
+		return x * y;
+	}
+	public static double ori(double x, double y) {
+		return x * y;
+	}
+	public static float ori(float x, float y) {
+		return x * y;
+	}
+
+	// IMPARTIRE
+	public static int div(int x, int y) {
+		if (y == 0) {
+			throw new IllegalArgumentException("Imposibil de imparit la zero");
+		}
+		return x / y;
+	}
+	public static double div(double x, double y) {
+		if (y == 0.0) {
+			throw new IllegalArgumentException("Imposibil de imparit la zero");
+		}
+		return x / y;
+	}
+	public static float div(float x, float y) {
+		if (y == 0.0f) {
+			throw new IllegalArgumentException("Imposibil de imparit la zero");
+		}
+		return x / y;
+	}
+}
+
+////////////////////////// MainSecundar.java //////////////////////////
+package project;
+
+public class MainSecundar {
+
+	public static void main(String[] args) {
+		
+		int a = 10;
+		int b = 10;
+		System.out.println("a = "+a+"; b = "+b+";");
+		System.out.println(a + " + " + b + " = " + CalculatorSecundar.plus(a, b));
+		System.out.println(a + " - " + b + " = " + CalculatorSecundar.minus(a, b));
+		System.out.println(a + " * " + b + " = " + CalculatorSecundar.ori(a, b));
+		System.out.println(a + " / " + b + " = " + CalculatorSecundar.div(a, b));
+		System.out.println();
+		
+		double x = 2.5;
+		double y = 2.5;
+		System.out.println("x = "+x+"; y = "+y+";");
+		System.out.println(x + " + " + y + " = " + CalculatorSecundar.plus(x, y));
+		System.out.println(x + " - " + y + " = " + CalculatorSecundar.minus(x, y));
+		System.out.println(x + " * " + y + " = " + CalculatorSecundar.ori(x, y));
+		System.out.println(x + " / " + y + " = " + CalculatorSecundar.div(x, y));
+		System.out.println();
+		
+		float m = 3.5f;
+		float n = 2.5f;
+		System.out.println("m = "+m+"; n = "+n+";");
+		System.out.println(m + " + " + n + " = " + CalculatorSecundar.plus(m, n));
+		System.out.println(m + " - " + n + " = " + CalculatorSecundar.minus(m, n));
+		System.out.println(m + " * " + n + " = " + CalculatorSecundar.ori(m, n));
+		System.out.println(m + " / " + n + " = " + CalculatorSecundar.div(m, n));
+		System.out.println();
+	}
+}
