@@ -1,0 +1,66 @@
+////////////////////////// Operatii.java //////////////////////////
+
+package project;
+
+public interface Operatii {
+	
+    double plus(double x, double y);
+    double minus(double x, double y);
+    double ori(double x, double y);
+    double div(double x, double y);
+    double sqrt(double x);
+    double pow(double x);
+    
+}
+
+////////////////////////// Calcule.java //////////////////////////
+
+package project;
+
+public class Calcule implements Operatii {
+	
+    public double plus(double x, double y) {
+        return x + y;
+    }
+    public double minus(double x, double y) {
+        return x - y;
+    }
+    public double ori(double x, double y) {
+        return x * y;
+    }
+    public double div(double x, double y) {
+        return x / y;
+    }
+    public double sqrt(double x) {
+        return Math.sqrt(x);
+    }
+    public double pow(double x) {
+        return x * x;
+    }
+    
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+public class Main {
+	
+    public static void main(String[] args) {
+    	
+        Calcule calc = new Calcule();
+        double x = 2;
+        double y = 1;
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("x + y = " + calc.plus(x, y));
+        System.out.println("x - y = " + calc.minus(x, y));
+        System.out.println("x * y = " + calc.ori(x, y));
+        System.out.println("x / y = " + calc.div(x, y));
+        System.out.println("Sqrt x = " + calc.sqrt(x));
+        System.out.println("Sqrt y = " + calc.sqrt(y));
+        System.out.println("x^2 = " + calc.pow(x));
+        System.out.println("y^2 = " + calc.pow(y));
+    }
+    
+}
