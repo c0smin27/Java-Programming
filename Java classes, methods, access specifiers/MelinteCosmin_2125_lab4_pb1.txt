@@ -1,0 +1,70 @@
+////////////////////////// Methods.java //////////////////////////
+
+package project;
+
+import java.util.Random;
+
+class Methods {
+	
+	public double MediaAritmetica(int... nr) {
+	    int sum = 0;
+	    for (int i = 0; i < nr.length; i++) {
+	        sum = sum + nr[i];
+	    }
+	    return (double) sum / nr.length;
+	}
+	
+	public double[] TablouRandom(int n) {
+	    // tablou unidimensional cu lungimea n
+	    double[] array = new double[n];
+	    Random random = new Random();
+	    // atribuie fiecarui element o valoare aleatoare [0/1]
+	    for (int i = 0; i < n; i++) {
+	        array[i] = random.nextDouble();
+	    }
+	    return array;
+	}
+
+	public static String toUpperCase(char[] chars) {
+		StringBuilder string = new StringBuilder();
+	    // parcurge tabloul caracter cu caracter
+	    for (char c : chars) {
+	        // conversie majuscule
+	    	string.append(Character.toUpperCase(c));
+	    }
+	    return string.toString();
+	}
+	
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+    	// apelare MediaAritmetica
+        Methods methods = new Methods();
+        double media = methods.MediaAritmetica(27, 3, 2002);
+        System.out.println("Media aritmetica: " + media);
+
+        // apelare TablouRandom
+        System.out.print("Introduceti numarul de elemente: ");
+        Scanner scanner = new Scanner(System.in);
+        int nr = scanner.nextInt();
+        double[] arr = methods.TablouRandom(nr);
+        System.out.println("Tablou generat aleator cu " + nr + " elemente: " + Arrays.toString(arr));
+
+        // apelare toUpperCase
+        char[] chars = {'c', 'o', 's', 'm', 'i', 'n'};
+        String upper = Methods.toUpperCase(chars);
+        System.out.println("Sirul in majuscule: " + upper);
+    
+    }
+    
+}
