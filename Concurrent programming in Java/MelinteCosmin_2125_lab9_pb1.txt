@@ -1,0 +1,48 @@
+////////////////////////// ImplementedRunnable.java //////////////////////////
+package project;
+
+public class ImplementedRunnable implements Runnable {
+    private String str;
+    private static int nr = 0;
+
+    public ImplementedRunnable(String str) {
+        this.str = str;
+        nr++;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < nr; i++) {
+            System.out.println(str + " = " + (i+1));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+////////////////////////// Main.java //////////////////////////
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Introdu nr de obiecte: ");
+        int nr = scan.nextInt();
+        scan.close();
+
+        ImplementedRunnable[] obj = new ImplementedRunnable[nr];
+        for (int i = 0; i < nr; i++) {
+            obj[i] = new ImplementedRunnable("Obj " + (i+1));
+        }
+
+        for (ImplementedRunnable object : obj) {
+            Thread thread = new Thread(object);
+            thread.start();
+        }
+    }
+}
