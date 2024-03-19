@@ -1,0 +1,75 @@
+////////////////////////// X.java //////////////////////////
+
+package project;
+
+class X {
+    
+	private String Privat;
+    protected String Protejat;
+    int Intreg;
+
+    public X(String Privat, String Protejat, int Intreg) {
+        this.Privat = Privat;
+        this.Protejat = Protejat;
+        this.Intreg = Intreg;
+    }
+    
+    // constructor, accesor pt private
+    public String getPrivat() {
+        return Privat;
+    }
+    public void setPrivat(String Privat) {
+        this.Privat = Privat;
+    }
+    
+    // constructor, accesor pt protected
+    public String getProtejat() {
+        return Protejat;
+    }
+    public void setProtejat(String Protejat) {
+        this.Protejat = Protejat;
+    }
+    
+    // constructor, accesor pt int
+    public int getIntreg() {
+        return Intreg;
+    }
+    public void setIntreg(int Intreg) {
+        this.Intreg = Intreg;
+    }
+
+    @Override
+    protected void finalize() {
+        System.out.println("Obiectul X a fost sters.");
+    }
+    
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        
+        X obiect1 = new X("string privat 1", "string protected 1", 27); // obiect X nou1
+        
+        System.out.println("String Privat: " + obiect1.getPrivat());
+        System.out.println("String Protejat: " + obiect1.getProtejat());
+        
+        System.out.println("Intreg: " + obiect1.getIntreg() + "\n");
+        obiect1 = null; // eliminare obiect -> garbage collector
+
+        X obiect2 = new X("string privat 2", "string protected 2", 20); // obiect X nou2
+        
+        obiect2.setIntreg(21); // modificam valorile atributelor
+        System.out.println("String Privat: " + obiect2.getPrivat());
+        System.out.println("String Protejat: " + obiect2.getProtejat());
+        System.out.println("Intreg: " + obiect2.getIntreg() + "\n");
+        
+        System.gc(); // garbage collector
+
+    }
+    
+}

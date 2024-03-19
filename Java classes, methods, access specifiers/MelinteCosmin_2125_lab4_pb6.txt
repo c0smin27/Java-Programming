@@ -1,0 +1,31 @@
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Introdu numarul de caractere: ");
+        int n = scan.nextInt();
+
+        char[] arr = new char[n];
+        String lista = "0123456789abcdefghijklmnopqrstuvwxyz";
+        Random random = new Random();
+        for (int i = 0; i < n; i++) {
+            arr[i] = lista.charAt(random.nextInt(lista.length())); // generare array
+        }
+
+        String StringOg = new String(arr); // array-ul de caractere -> String
+        String String2 = StringOg.replaceAll("\\d", "*"); // inlocuire numere cu *
+
+        System.out.println("Sirul original: " + StringOg);
+        System.out.println("Sirul modificat: " + String2);
+        
+    }
+    
+}

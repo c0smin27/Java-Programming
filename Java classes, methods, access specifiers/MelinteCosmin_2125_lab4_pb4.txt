@@ -1,0 +1,87 @@
+////////////////////////// Persoana.java //////////////////////////
+
+package project;
+
+public class Persoana {
+	
+    private String nume;
+    private float latitudine;
+    private float longitudine;
+    
+    // constructor explicit
+    public Persoana() {
+        this.nume = null;
+        this.latitudine = 0;
+        this.longitudine = 0;
+    }
+    
+    // distrugere obiect
+    @Override
+    public void finalize() {
+        System.out.println("Obiectul " + nume + latitudine + longitudine + " a fost sters.");
+    }
+    
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+    public String getNume() {
+        return nume;
+    }
+    
+    
+    public void setLatitudine(float latitudine) {
+        this.latitudine = latitudine;
+    }
+    public float getLatitudine() {
+        return latitudine;
+    }
+    
+    
+    public void setLongitudine(float longitudine) {
+        this.longitudine = longitudine;
+    }
+    public float getLongitudine() {
+        return longitudine;
+    }
+    
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+	
+    public static void main(String[] args) {
+    	
+        Scanner input = new Scanner(System.in);
+        System.out.print("Introdu numarul de persoane: ");
+        int n = input.nextInt();
+        
+        // vector de obiecte
+        Persoana[] persoane = new Persoana[n];
+        
+        // initializare obiecte
+        for (int i = 0; i < n; i++) {
+            Persoana persoana = new Persoana();
+            System.out.print("Introdu numele, latitudinea si longitudinea pt persoana " + (i + 1) + ": ");
+            persoana.setNume(input.next());
+            persoana.setLatitudine(input.nextFloat());
+            persoana.setLongitudine(input.nextFloat());
+            persoane[i] = persoana;
+        }
+        
+        System.out.print("\n");
+        // afisare
+        for (int i = 0; i < n; i++) {
+            System.out.println("Persoana " + (i + 1) + ":");
+            System.out.println("Nume: " + persoane[i].getNume());
+            System.out.println("Latitudine: " + persoane[i].getLatitudine());
+            System.out.println("Longitudine: " + persoane[i].getLongitudine() + "\n");
+        }
+        
+        input.close();
+    }
+}

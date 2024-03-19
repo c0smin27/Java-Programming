@@ -1,0 +1,66 @@
+////////////////////////// Matrice.java //////////////////////////
+
+package project;
+
+public class Matrice {
+	
+    private int[][] matrice;
+    private int i; //randuri
+    private int j; //coloane
+
+    public Matrice(int i, int j) {
+        this.i = i;
+        this.j = j;
+        matrice = new int[i][j];
+    }
+
+    public int get(int i, int j) {
+        return matrice[i][j];
+    }
+    public void set(int i, int j, int val) {
+    	matrice[i][j] = val;
+    }
+
+    public int getRanduri() {
+        return i;
+    }
+    public int getColoane() {
+        return j;
+    }
+    
+    public void afisare() {
+        for (int x = 0; x < i; x++) {
+            for (int y = 0; y < j; y++) {
+                System.out.print(matrice[x][y] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+}
+
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Matrice matrix = new Matrice(3, 3);
+	   
+		matrix.set(0, 0, 10);
+	    matrix.set(0, 1, 20);
+	    matrix.set(0, 2, 30);
+	    matrix.set(1, 0, 40);
+	    matrix.set(1, 1, 50);
+	    matrix.set(1, 2, 60);
+	    matrix.set(2, 0, 70);
+	    matrix.set(2, 1, 80);
+	    matrix.set(2, 2, 90);
+
+	    matrix.afisare();
+	    
+	}
+	
+}

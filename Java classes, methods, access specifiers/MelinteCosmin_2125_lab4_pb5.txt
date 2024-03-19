@@ -1,0 +1,34 @@
+////////////////////////// Main.java //////////////////////////
+
+package project;
+
+public class Main {
+    public static void main(String[] args) {
+    	
+        String[] cuvinte = {"Aceasta", "este", "un", "exemplu"};
+        // join() -> concateneaza cuvintele dintr-un array -> sir de caractere
+        String join = String.join(" ", cuvinte);
+        System.out.println(join); System.out.print("\n");
+        
+        // chaSystem.out.println(join);rs() -> obtine fluxul de caractere al unui sir
+        String chars = "Aceasta este o propozitie.";
+        chars.chars().forEach(System.out::println); System.out.print("\n");
+
+        // lines() -> obtine fluxul de linii al unui sir
+        String lines = "Acesta este un paragraf.\nAceasta este o linie din paragraf.\nParagraful se termina cu un punct.\n";
+        lines.lines().forEach(System.out::println); System.out.print("\n");
+
+        // repeat() -> repeta un sir de caractere de x ori
+        String repeat = "Test ".repeat(5);
+        System.out.println(repeat); System.out.print("\n");
+
+        // transform() -> transforma un sir de caractere folosind o functie lambda
+        String transform = "Java".transform(s -> s + " Developer");
+        System.out.println(transform); System.out.print("\n");
+
+        // formatted() -> formateaza un sir de caractere
+        String formatted = String.format("%s %d %f", "Exemplu cuvant", 2002, 3.27);
+        System.out.println(formatted); System.out.print("\n");
+        
+    }
+}

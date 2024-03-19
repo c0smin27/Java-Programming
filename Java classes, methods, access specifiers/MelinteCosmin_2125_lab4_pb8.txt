@@ -1,0 +1,46 @@
+package project;
+
+import java.util.Random;
+
+public class Main {
+	public static void main(String[] args) {
+    	
+        String lista = "0123456789ABCDEFGHJKMNPQRSTUVWXYZ";
+        int lungime = 20;
+        
+        StringBuilder key = new StringBuilder();
+        Random random = new Random();
+        
+        for (int i = 0; i < lungime; i++) {
+        	int aux = random.nextInt(lista.length());
+            char c = lista.charAt(aux); // extrage caracterul random
+            key.append(c); // adauga caracterul la sir
+            
+            if ((i + 1) % 5 == 0 && i != lungime - 1) { key.append("-"); } // Adaugă "-" dupa 5 caractere
+        }
+        
+        System.out.println("Cheie de autentificare: " + key + "\n");
+        
+        int nrcifre = 0, nrlitere = 0;
+        for (int i = 0; i < key.length(); i++) {
+            char c = key.charAt(i);
+            if (Character.isDigit(c)) { nrcifre++; }
+            else if (Character.isLetter(c)) { nrlitere++; }
+        }
+ 
+        if (nrcifre > nrlitere && nrlitere != 0) { System.out.println("Cheie de autentificare generata!\n"); }
+        else if (nrcifre < nrlitere || nrlitere == 0) {
+        	System.out.println("Cheie de autentificare incorecta!\n");
+        	System.out.println("nr. cifre = " + nrcifre);
+            System.out.println("nr. litere = " + nrlitere);
+        }
+        
+        if (nrcifre < nrlitere) {
+        	System.out.println("\n(!) nr.cifre trebuie sa fie > nr.litere\n(!) nr.litere trebuie sa fie != 0");
+        }
+        if (nrlitere == 0) {
+        	System.out.println("\n(!) nr.litere trebuie sa fie != 0");
+        }
+
+    }
+}
