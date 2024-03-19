@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class root {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introdu un numar intreg: ");
+        int nr = scanner.nextInt();
+        
+        int i;
+        long factorial = 1;
+        
+       if (nr < 0)
+    	   System.out.println("(!) Numarul nu poate fi negativ");
+       else if (nr == 1)
+    	   System.out.println("Factorialul numarului " + nr + " este: 1");
+       else {
+    	   for (i=nr; i>=2; i--) {
+    		   factorial *= i;
+    	   }
+    	   System.out.println("Factorialul numarului " + nr + " este: " + factorial);
+       }
+    }
+}
